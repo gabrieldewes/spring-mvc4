@@ -13,7 +13,19 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="initializer com.spring.conf.SpringMVCServlet servlet context" name="MVC dispatcher initializer servlet context" removed="true">
+          <dependency>initializer com.spring.conf.SpringMVCServlet root context</dependency>
+        </fileset>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <dependency>initializer com.spring.conf.SpringMVCServlet root context</dependency>
+          <file>file://$MODULE_DIR$/src/main/java/com/spring/conf/AppWebConfiguration.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/spring/conf/JPAConfiguration.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/spring/conf/SecurityConfiguration.java</file>
+          <file>file://$MODULE_DIR$/src/main/resources/log4j.properties</file>
+          <file>file://$MODULE_DIR$/src/main/resources/application.properties</file>
+        </fileset>
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
@@ -64,9 +76,10 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:jcl-over-slf4j:1.6.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:slf4j-log4j12:1.6.1" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: log4j:log4j:1.2.16" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet.jsp:jsp-api:2.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.el:javax.el-api:3.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:1.12.2.BUILD-SNAPSHOT" level="project" />
   </component>
 </module>

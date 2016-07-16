@@ -18,6 +18,7 @@
 	                  	<td>id</td>
 		                  	<td>name</td>
 		                  	<td>description</td>
+						  	<td>category</td>
 		                  	<td>price</td>
 						<td>actions</td>
 	                  </tr>
@@ -28,6 +29,7 @@
 						<td><a href="<c:url value='/product'/>/${object.id}">${object.id}</a></td>
 		                  	<td>${object.name}</td>
 		                  	<td>${object.description}</td>
+						  	<td>${object.category.name}</td>
 		                  	<td>${object.price}</td>
 	                    <td><a href="<c:url value='/product/remove'/>/${object.id}">Remove</a></td>
 					  </tr>

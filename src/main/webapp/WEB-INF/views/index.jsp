@@ -8,7 +8,7 @@
 </head>
 <%@taglib tagdir="/WEB-INF/tags/template" prefix="template" %>
 <template:admin>
-    <div class="container min-container">
-        <h1>Olá!</h1>
+    <div class="container">
+        <h1>Bem-vindo!</h1>
     </div>
 </template:admin>

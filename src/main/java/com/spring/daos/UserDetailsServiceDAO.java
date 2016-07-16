@@ -16,9 +16,7 @@ public class UserDetailsServiceDAO implements UserDetailsService
    private EntityManager em;
 
    @Override
-   public UserDetails loadUserByUsername(String username)
-         throws UsernameNotFoundException
-   {
+   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
       throw new UnsupportedOperationException("You should implement the body of this method in order to load users");
    }
 

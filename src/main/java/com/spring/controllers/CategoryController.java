@@ -18,25 +18,19 @@ import com.spring.daos.CategoryDAO;
 @Controller
 @RequestMapping("/category")
 @Transactional
-public class CategoryController
-{
+public class CategoryController {
 
    @Autowired
    private CategoryDAO categoryDAO;
 
    @RequestMapping("/form")
-   public ModelAndView form(Category category)
-   {
-      ModelAndView modelAndView = new ModelAndView("category/form-add");
-      return modelAndView;
-
+   public ModelAndView form(Category category) {
+      return new ModelAndView("category/form-add");
    }
 
    @RequestMapping(method = RequestMethod.POST)
-   public ModelAndView save(@Valid Category category, BindingResult bindingResult)
-   {
-      if (bindingResult.hasErrors())
-      {
+   public ModelAndView save(@Valid Category category, BindingResult bindingResult) {
+      if (bindingResult.hasErrors()) {
          return form(category);
       }
       categoryDAO.save(category);
@@ -44,36 +38,30 @@ public class CategoryController
    }
 
    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-   public ModelAndView load(@PathVariable("id") Integer id)
-   {
+   public ModelAndView load(@PathVariable("id") Integer id) {
       ModelAndView modelAndView = new ModelAndView("category/form-update");
       modelAndView.addObject("category", categoryDAO.findById(id));
       return modelAndView;
    }
 
    @RequestMapping(method = RequestMethod.GET)
-   public ModelAndView list(@RequestParam(defaultValue = "0", required = false) int page)
-   {
+   public ModelAndView list(@RequestParam(defaultValue = "0", required = false) int page) {
       ModelAndView modelAndView = new ModelAndView("category/list");
       modelAndView.addObject("paginatedList", categoryDAO.paginated(page, 10));
       return modelAndView;
    }
 
-   //just because get is easier here. Be my guest if you want to change.
    @RequestMapping(method = RequestMethod.GET, value = "/remove/{id}")
-   public String remove(@PathVariable("id") Integer id)
-   {
+   public String remove(@PathVariable("id") Integer id) {
       Category category = categoryDAO.findById(id);
       categoryDAO.remove(category);
       return "redirect:/category";
    }
 
    @RequestMapping(method = RequestMethod.POST, value = "/{id}")
-   public ModelAndView update(@PathVariable("id") Integer id, @Valid Category category, BindingResult bindingResult)
-   {
+   public ModelAndView update(@PathVariable("id") Integer id, @Valid Category category, BindingResult bindingResult) {
       category.setId(id);
-      if (bindingResult.hasErrors())
-      {
+      if (bindingResult.hasErrors()) {
          return new ModelAndView("category/form-update");
       }
       categoryDAO.update(category);

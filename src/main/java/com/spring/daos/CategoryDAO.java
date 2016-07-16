@@ -9,14 +9,12 @@ import com.spring.models.PaginatedList;
 import com.spring.models.Category;
 
 @Repository
-public class CategoryDAO
-{
+public class CategoryDAO {
 
    @PersistenceContext
    private EntityManager manager;
 
-   public List<Category> all()
-   {
+   public List<Category> all() {
       return manager.createQuery("select c from Category c", Category.class).getResultList();
    }
 
@@ -40,8 +38,7 @@ public class CategoryDAO
       manager.merge(category);
    }
 
-   public PaginatedList paginated(int page, int max)
-   {
+   public PaginatedList paginated(int page, int max) {
       return new PaginatorQueryHelper().list(manager, Category.class, page, max);
    }
 

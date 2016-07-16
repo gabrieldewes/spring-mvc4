@@ -7,14 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Category
-{
+public class Category {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id;
-   private String name;
-   private String description;
+   private String name, description;
 
    public Integer getId()
    {

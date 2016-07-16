@@ -19,8 +19,7 @@ import com.spring.daos.CategoryDAO;
 @Controller
 @RequestMapping("/product")
 @Transactional
-public class ProductController
-{
+public class ProductController {
 
    @Autowired
    private ProductDAO productDAO;
@@ -28,24 +27,20 @@ public class ProductController
    private CategoryDAO categoryDAO;
 
    @RequestMapping("/form")
-   public ModelAndView form(Product product)
-   {
+   public ModelAndView form(Product product) {
       ModelAndView modelAndView = new ModelAndView("product/form-add");
       return loadFormDependencies(modelAndView);
 
    }
 
-   private ModelAndView loadFormDependencies(ModelAndView modelAndView)
-   {
+   private ModelAndView loadFormDependencies(ModelAndView modelAndView) {
       modelAndView.addObject("categoryList", categoryDAO.all());
       return modelAndView;
    }
 
    @RequestMapping(method = RequestMethod.POST)
-   public ModelAndView save(@Valid Product product, BindingResult bindingResult)
-   {
-      if (bindingResult.hasErrors())
-      {
+   public ModelAndView save(@Valid Product product, BindingResult bindingResult) {
+      if (bindingResult.hasErrors()) {
          return form(product);
       }
       productDAO.save(product);
@@ -53,8 +48,7 @@ public class ProductController
    }
 
    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-   public ModelAndView load(@PathVariable("id") Integer id)
-   {
+   public ModelAndView load(@PathVariable("id") Integer id) {
       ModelAndView modelAndView = new ModelAndView("product/form-update");
       modelAndView.addObject("product", productDAO.findById(id));
       loadFormDependencies(modelAndView);
@@ -62,28 +56,24 @@ public class ProductController
    }
 
    @RequestMapping(method = RequestMethod.GET)
-   public ModelAndView list(@RequestParam(defaultValue = "0", required = false) int page)
-   {
+   public ModelAndView list(@RequestParam(defaultValue = "0", required = false) int page) {
       ModelAndView modelAndView = new ModelAndView("product/list");
       modelAndView.addObject("paginatedList", productDAO.paginated(page, 10));
       return modelAndView;
    }
 
-   //just because get is easier here. Be my guest if you want to change.
+   // apenas porque GET é mais fácil aqui. Seja meu convidado, se você deseja alterar.
    @RequestMapping(method = RequestMethod.GET, value = "/remove/{id}")
-   public String remove(@PathVariable("id") Integer id)
-   {
+   public String remove(@PathVariable("id") Integer id) {
       Product product = productDAO.findById(id);
       productDAO.remove(product);
       return "redirect:/product";
    }
 
    @RequestMapping(method = RequestMethod.POST, value = "/{id}")
-   public ModelAndView update(@PathVariable("id") Integer id, @Valid Product product, BindingResult bindingResult)
-   {
+   public ModelAndView update(@PathVariable("id") Integer id, @Valid Product product, BindingResult bindingResult) {
       product.setId(id);
-      if (bindingResult.hasErrors())
-      {
+      if (bindingResult.hasErrors()) {
          return loadFormDependencies(new ModelAndView("product/form-update"));
       }
       productDAO.update(product);

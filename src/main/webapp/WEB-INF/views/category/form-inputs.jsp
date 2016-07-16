@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="description">descrição</label>
+          <label for="description">description</label>
           <div class="input-group">
             <span class="input-group-addon"><i class=""></i></span><form:input path='description' type='text'/>
 <form:errors path='description'/>

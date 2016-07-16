@@ -11,8 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.spring")
-public class AppWebConfiguration extends WebMvcConfigurerAdapter
-{
+class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
    @Override
    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer)
@@ -21,8 +20,7 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter
    }
 
    @Bean
-   public InternalResourceViewResolver internalResourceViewResolver()
-   {
+   public InternalResourceViewResolver internalResourceViewResolver() {
       InternalResourceViewResolver resolver = new InternalResourceViewResolver();
       resolver.setPrefix("/WEB-INF/views/");
       resolver.setSuffix(".jsp");

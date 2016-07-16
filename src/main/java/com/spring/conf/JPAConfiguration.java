@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-public class JPAConfiguration {
+class JPAConfiguration {
    /*
       MySQL no openshift
       Root User: adminrlWgtSj
@@ -28,18 +28,18 @@ public class JPAConfiguration {
       Database Name: spring
       Connection URL: mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
 
+   private static final String URL = "mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT";
+   private static final String DB_USER = "adminrlWgtSj";
+   private static final String DB_PASS = "33zC1UbEU3Ra";
+   */
+
    private static final String DRIVER = "com.mysql.jdbc.Driver";
    private static final String URL = "jdbc:mysql://localhost/spring_app";
    private static final String DB_USER = "root";
    private static final String DB_PASS = "";
-   */
-   private static final String URL = "mysql://localhost/spring";
-   private static final String DB_USER = "adminrlWgtSj";
-   private static final String DB_PASS = "33zC1UbEU3Ra";
 
    @Bean
-   public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource)
-   {
+   public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
       LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
       em.setDataSource(dataSource);
       em.setPackagesToScan(new String[] { "com.spring.models" });
@@ -52,10 +52,9 @@ public class JPAConfiguration {
    }
 
    @Bean
-   public DataSource dataSource(Environment environment)
-   {
+   public DataSource dataSource(Environment environment) {
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
-      //dataSource.setDriverClassName(DRIVER);
+      dataSource.setDriverClassName(DRIVER);
       dataSource.setUrl(URL);
       dataSource.setUsername(DB_USER);
       dataSource.setPassword(DB_PASS);
@@ -63,21 +62,18 @@ public class JPAConfiguration {
    }
 
    @Bean
-   public PlatformTransactionManager transactionManager(EntityManagerFactory emf)
-   {
+   public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
       JpaTransactionManager transactionManager = new JpaTransactionManager();
       transactionManager.setEntityManagerFactory(emf);
       return transactionManager;
    }
 
    @Bean
-   public PersistenceExceptionTranslationPostProcessor exceptionTranslation()
-   {
+   public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
       return new PersistenceExceptionTranslationPostProcessor();
    }
 
-   Properties additionalProperties()
-   {
+   private Properties additionalProperties() {
       Properties properties = new Properties();
       properties.setProperty("hibernate.hbm2ddl.auto", "update");
       properties.setProperty("hibernate.show_sql", "true");

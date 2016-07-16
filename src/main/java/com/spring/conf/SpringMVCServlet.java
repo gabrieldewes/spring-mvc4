@@ -2,12 +2,10 @@ package com.spring.conf;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class SpringMVCServlet extends AbstractAnnotationConfigDispatcherServletInitializer
-{
+public class SpringMVCServlet extends AbstractAnnotationConfigDispatcherServletInitializer {
 
    @Override
-   protected Class<?>[] getRootConfigClasses()
-   {
+   protected Class<?>[] getRootConfigClasses() {
       return new Class[] { JPAConfiguration.class, SecurityConfiguration.class, AppWebConfiguration.class };
    }
 

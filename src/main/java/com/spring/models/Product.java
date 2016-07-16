@@ -10,14 +10,12 @@ import java.math.BigDecimal;
 import com.spring.models.Category;
 
 @Entity
-public class Product
-{
+public class Product {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Integer id;
-   private String name;
-   private String description;
+   private String name, description;
    private BigDecimal price;
    @ManyToOne
    private Category category;
